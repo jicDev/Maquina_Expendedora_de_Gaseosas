@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/out/test/Maquina Expendedora de Gaseosas"/>
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<lib name="h2-1.4.196.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/h2-1.4.196.jar!/"/>
+	</lib>
+	<levels>
+		<level name="h2-1.4.196" value="project"/>
+	</levels>
+</component>
