@@ -1,59 +1,62 @@
 package graficos;
 
-import entidades.Gaseosa;
-import excepciones.MiException;
-import servicios.GaseosaServicio;
+import entidades.Soda;
+import excepciones.ExceptionManager;
+import servicios.SodaService;
 import java.util.Vector;
 
 public class Handler {
-
-    private Ventana ventana;
-    private GaseosaServicio gaseosaServicio;
-    private Gaseosa gaseosa;
+    private Window window;
+    private SodaService sodaService;
+    private Soda soda;
 
     public Handler() {
-        gaseosaServicio = new GaseosaServicio();
+        sodaService = new SodaService();
     }
 
-    public Handler(Gaseosa gaseosa) {
-        this.gaseosa = gaseosa;
-        gaseosaServicio = new GaseosaServicio();
-        gaseosaServicio.setDAO(gaseosa);
+    public Handler(Soda soda) {
+        this.soda = soda;
+        sodaService = new SodaService();
+        sodaService.setDAO(soda);
     }
 
-    public Handler(Ventana ventana) {
-        this.ventana = ventana;
+    public Handler(Window window) {
+        this.window = window;
     }
 
-    public void insertar() throws MiException {
-        gaseosaServicio.insertarGaseosa(gaseosa);
+    public void insertar() throws ExceptionManager {
+        sodaService.insertSoda(soda);
     }
 
-    public void modificar() {
-        gaseosaServicio.modificarGaseosa(gaseosa);
+    public void modify() {
+        sodaService.modifySoda(soda);
     }
 
-    public void borrar() {
-        gaseosaServicio.borrarGaseosa(gaseosa);
+    public void delete() {
+        sodaService.deleteSoda(soda);
     }
 
-    public Vector<Vector> listar() {
-        return gaseosaServicio.listarTodasLasGaseosas();
+    public Vector<Vector> list() {
+        return sodaService.listSoda();
     }
 
-    public void insertarGaseosa() {
-        ventana.changeMode(new InsertarGaseosa());
+    public void insertSoda() {
+        window.ChangeMode(new InsertSoda());
     }
 
-    public void borrarGaseosa() {
-        ventana.changeMode(new BorrarGaseosa());
+    public void deleteSoda() {
+        window.ChangeMode(new DeleteSoda());
     }
 
-    public void modificarGaseosa() {
-        ventana.changeMode(new ModificarGaseosa());
+    public void modifySoda() {
+        window.ChangeMode(new ModifySoda());
     }
 
-    public void listarTodasLasGaseosas() {
-        ventana.changeMode(new ListarTodasLasGaseosas());
+    public void listSoda() {
+        window.ChangeMode(new ListSoda());
+    }
+
+    public void showMachine() {
+        window.ChangeMode(new ShowMachine());
     }
 }

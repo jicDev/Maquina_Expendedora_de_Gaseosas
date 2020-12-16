@@ -1,10 +1,10 @@
 package main;
 
-import graficos.Ventana;
+import graficos.Window;
 
 public class Main {
 
     public static void main(String[] args) {
-        new Ventana();
+        new Window();
     }
 }

@@ -5,56 +5,66 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Menu extends JMenuBar {
-
     private Handler handler;
 
     Menu(Handler handler) {
-
         this.handler = handler;
+        JMenu soda = new JMenu("Gaseosas");
 
-        JMenu gaseosa = new JMenu("Gaseosas");
-        JMenuItem insertar = new JMenuItem("Insertar");
-        JMenuItem modificar = new JMenuItem("Modificar");
-        JMenuItem borrar = new JMenuItem("Borrar");
-        JMenuItem listarTodo = new JMenuItem("Mostrar Todo");
-        gaseosa.add(insertar);
-        gaseosa.add(modificar);
-        gaseosa.add(borrar);
-        gaseosa.add(listarTodo);
-        add(gaseosa);
+        JMenuItem insert = new JMenuItem("Insertar");
+        JMenuItem modify = new JMenuItem("Modificar");
+        JMenuItem delete = new JMenuItem("Borrar");
+        JMenuItem list = new JMenuItem("Mostrar Todo");
 
-        insertar.addActionListener(new NuevoLisener());
-        modificar.addActionListener(new ModificarLisener());
-        borrar.addActionListener(new BorrarLisener());
-        listarTodo.addActionListener(new MostrarTodosLisener());
+        soda.add(insert);
+        soda.add(modify);
+        soda.add(delete);
+        soda.add(list);
+        add(soda);
 
+        insert.addActionListener(new InsertLisener());
+        modify.addActionListener(new ModifyLisener());
+        delete.addActionListener(new DeleteLisener());
+        list.addActionListener(new ListLisener());
+
+        JMenu machine = new JMenu("Expendedora");
+        JMenuItem show = new JMenuItem("Mostrar");
+        machine.add(show);
+        add(machine);
+
+        show.addActionListener(new ShowLisener());
     }
 
-    private class NuevoLisener implements ActionListener {
+    private class InsertLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.insertarGaseosa();
+            handler.insertSoda();
         }
     }
 
-    private class BorrarLisener implements ActionListener {
+    private class DeleteLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.borrarGaseosa();
+            handler.deleteSoda();
         }
     }
 
-    private class ModificarLisener implements ActionListener {
+    private class ModifyLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.modificarGaseosa();
+            handler.modifySoda();
         }
     }
 
-    private class MostrarTodosLisener implements ActionListener {
+    private class ListLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.listarTodasLasGaseosas();
+            handler.listSoda();
         }
+    }
+
+    private class ShowLisener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) { handler.showMachine(); }
     }
 }

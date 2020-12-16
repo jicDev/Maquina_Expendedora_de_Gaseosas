@@ -2,10 +2,9 @@ package graficos;
 
 import javax.swing.*;
 
-public class Ventana extends JFrame {
+public class Window extends JFrame {
 
-    public Ventana() {
-
+    public Window() {
         setBounds(100, 100, 600, 200);
 
         Menu menu = new Menu(new Handler(this));
@@ -14,10 +13,9 @@ public class Ventana extends JFrame {
 
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
     }
 
-    void changeMode(JPanel panel) {
+    void ChangeMode(JPanel panel) {
         getContentPane().removeAll();
         getContentPane().add(panel);
         getContentPane().validate();
