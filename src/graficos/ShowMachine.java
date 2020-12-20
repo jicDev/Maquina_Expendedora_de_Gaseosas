@@ -3,11 +3,14 @@ package graficos;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ShowMachine extends JPanel {
     private Handler handler;
+    private JLabel state;
 
     public ShowMachine() {
         init();
@@ -17,9 +20,21 @@ public class ShowMachine extends JPanel {
         setLayout(new BorderLayout());
         handler = new Handler();
 
+        removeAll();
+        add(StartLayout(), BorderLayout.PAGE_START);
+        add(CenterLayout(), BorderLayout.CENTER);
+        add(RightLayout(), BorderLayout.LINE_END);
+        add(EndLayout(), BorderLayout.PAGE_END);
+        validate();
+        repaint();
+        updateUI();
+    }
+
+    private JPanel StartLayout() {
+        GridBagConstraints c = new GridBagConstraints();
+
         JPanel start = new JPanel();
         start.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
 
         BufferedImage upPicture = null;
         try {
@@ -35,12 +50,18 @@ public class ShowMachine extends JPanel {
         c.gridy = 0;
         start.add(vendindMachineBrand, c);
 
-        JLabel state = new JLabel(" MAQUINA_LISTA ");
+        state = new JLabel(" MAQUINA_LISTA ");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(0,50,0,50);
         c.gridx = 1;
         c.gridy = 0;
         start.add(state, c);
+
+        return start;
+    }
+
+    private JPanel CenterLayout() {
+        GridBagConstraints c = new GridBagConstraints();
 
         JPanel center = new JPanel();
         center.setLayout(new GridBagLayout());
@@ -82,6 +103,7 @@ public class ShowMachine extends JPanel {
         c.insets = new Insets(0,0,0,0);
         c.gridx = 1;
         c.gridy = 0;
+        cocacolaSelect.addActionListener(new SelectLisener("Coca Cola"));
         center.add(cocacolaSelect, c);
 
         JLabel cocacolalight = new JLabel(new ImageIcon(cocacolalightPicture));
@@ -96,6 +118,7 @@ public class ShowMachine extends JPanel {
         c.insets = new Insets(0,0,0,0);
         c.gridx = 3;
         c.gridy = 0;
+        cocacolalightSelect.addActionListener(new SelectLisener("Coca Cola Light"));
         center.add(cocacolalightSelect, c);
 
         JLabel cocacolazero = new JLabel(new ImageIcon(cocacolazeroPicture));
@@ -110,6 +133,7 @@ public class ShowMachine extends JPanel {
         c.insets = new Insets(0,0,0,0);
         c.gridx = 1;
         c.gridy = 1;
+        cocacolazeroSelect.addActionListener(new SelectLisener("Coca Cola Zero"));
         center.add(cocacolazeroSelect, c);
 
         JLabel sprite = new JLabel(new ImageIcon(spritePicture));
@@ -124,24 +148,47 @@ public class ShowMachine extends JPanel {
         c.insets = new Insets(0,0,0,0);
         c.gridx = 3;
         c.gridy = 1;
+        spriteSelect.addActionListener(new SelectLisener("Sprite"));
         center.add(spriteSelect, c);
+
+        return center;
+    }
+
+    private JPanel RightLayout() {
+        GridBagConstraints c = new GridBagConstraints();
 
         JPanel right = new JPanel();
         right.setLayout(new GridBagLayout());
 
-        JButton pay = new JButton("Insertar Ficha");
+        JButton addCoin = new JButton("Insertar Ficha");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(50,0,50,0);
         c.gridx = 0;
         c.gridy = 0;
-        right.add(pay, c);
+        addCoin.addActionListener(new AddCoinLisener());
+        right.add(addCoin, c);
 
-        JButton giveback = new JButton("Devolver Ficha");
+        JButton returnCoin = new JButton("Devolver Ficha");
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(50,0,50,0);
         c.gridx = 0;
         c.gridy = 1;
-        right.add(giveback, c);
+        returnCoin.addActionListener(new ReturnCoinLisener());
+        right.add(returnCoin, c);
+
+        JButton buy = new JButton("Comprar");
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(50,0,50,0);
+        c.gridx = 0;
+        c.gridy = 2;
+        buy.addActionListener(new BuySodaLisener());
+        right.add(buy, c);
+
+        return right;
+    }
+
+    private JPanel EndLayout() {
+        GridBagConstraints c = new GridBagConstraints();
 
         JPanel end = new JPanel();
         end.setLayout(new GridBagLayout());
@@ -158,15 +205,50 @@ public class ShowMachine extends JPanel {
         c.insets = new Insets(0,50,0,50);
         c.gridx = 1;
         c.gridy = 0;
+        soda.addActionListener(new RetrieveLisener());
         end.add(soda, c);
 
-        removeAll();
-        add(start, BorderLayout.PAGE_START);
-        add(center, BorderLayout.CENTER);
-        add(right, BorderLayout.LINE_END);
-        add(end, BorderLayout.PAGE_END);
-        validate();
-        repaint();
-        updateUI();
+        return end;
+    }
+
+    public class AddCoinLisener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            state.setText(handler.AddCoin());
+        }
+    }
+
+    public class ReturnCoinLisener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            state.setText(handler.ReturnCoin());
+        }
+    }
+
+    public class SelectLisener implements ActionListener {
+        private String soda;
+
+        public SelectLisener(String soda) {
+            this.soda = soda;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            state.setText(handler.SelectSoda(soda));
+        }
+    }
+
+    public class BuySodaLisener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            state.setText(handler.BuySoda());
+        }
+    }
+
+    public class RetrieveLisener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            state.setText(handler.RetrieveSoda());
+        }
     }
 }

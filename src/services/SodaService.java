@@ -1,14 +1,13 @@
-package servicios;
+package services;
 
-import dao.SodaDAO;
-import dao.SodaDataManager;
+import dao.soda.SodaDAO;
+import dao.soda.SodaDataManager;
 import entidades.Soda;
 import excepciones.ExceptionManager;
 
 import java.util.Vector;
 
 public class SodaService {
-
     private SodaDAO sodaDAO;
 
     public void insertSoda(Soda soda) throws ExceptionManager {
