@@ -214,14 +214,16 @@ public class ShowMachine extends JPanel {
     public class AddCoinLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            state.setText(handler.AddCoin());
+            handler.AddCoin();
+            state.setText(handler.GetState());
         }
     }
 
     public class ReturnCoinLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            state.setText(handler.ReturnCoin());
+            handler.ReturnCoin();
+            state.setText(handler.GetState());
         }
     }
 
@@ -234,21 +236,24 @@ public class ShowMachine extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent event) {
-            state.setText(handler.SelectSoda(soda));
+            handler.SelectSoda(soda);
+            state.setText(handler.GetState());
         }
     }
 
     public class BuySodaLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            state.setText(handler.BuySoda());
+            handler.BuySoda();
+            state.setText(handler.GetState());
         }
     }
 
     public class RetrieveLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent event) {
-            state.setText(handler.RetrieveSoda());
+            handler.RetrieveSoda();
+            state.setText(handler.GetState());
         }
     }
 }

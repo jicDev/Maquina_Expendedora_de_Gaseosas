@@ -15,10 +15,10 @@ public class InsertSoda extends JPanel {
     private Handler handler;
 
     public InsertSoda() {
-        init();
+        Init();
     }
 
-    private void init() {
+    private void Init() {
         setLayout(new GridLayout(5, 2));
 
         JLabel title = new JLabel("Ingresar nueva gaseosa", SwingConstants.CENTER);
@@ -58,8 +58,8 @@ public class InsertSoda extends JPanel {
         public void actionPerformed(ActionEvent event) {
             try {
                 Soda soda = new Soda(completeBrand.getText(), completeCompany.getText(), Integer.parseInt(completeStock.getText()));
-                handler = new Handler(soda);
-                handler.insertar();
+                handler = new Handler();
+                handler.Insertar(soda);
             } catch (NumberFormatException e) {
                 try {
                     throw new ExceptionManager("Error al pasar string a numero.");

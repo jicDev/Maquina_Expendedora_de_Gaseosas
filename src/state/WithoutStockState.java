@@ -1,6 +1,14 @@
 package state;
 
+import entidades.Machine;
+
 public class WithoutStockState implements MachineState {
+    private Machine machine;
+
+    public WithoutStockState(Machine machine) {
+        this.machine = machine;
+    }
+
     @Override
     public void AddCoin() {
 
@@ -8,7 +16,7 @@ public class WithoutStockState implements MachineState {
 
     @Override
     public void ReturnCoin() {
-
+        this.machine.SetState(new ReadyState(this.machine));
     }
 
     @Override
@@ -17,7 +25,17 @@ public class WithoutStockState implements MachineState {
     }
 
     @Override
+    public String GetBrandSelected() {
+        return null;
+    }
+
+    @Override
     public void BuySoda() {
+
+    }
+
+    @Override
+    public void EmptyStock() {
 
     }
 

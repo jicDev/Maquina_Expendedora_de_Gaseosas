@@ -27,8 +27,18 @@ public class ExpendingState implements MachineState {
     }
 
     @Override
+    public String GetBrandSelected() {
+        return this.soda;
+    }
+
+    @Override
     public void BuySoda() {
         this.machine.SetState(new ExpendedState(this.machine));
+    }
+
+    @Override
+    public void EmptyStock() {
+        this.machine.SetState(new WithoutStockState(this.machine));
     }
 
     @Override

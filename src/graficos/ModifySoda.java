@@ -15,10 +15,10 @@ public class ModifySoda extends JPanel {
     private Handler handler;
 
     public ModifySoda() {
-        init();
+        Init();
     }
 
-    private void init() {
+    private void Init() {
         setLayout(new GridLayout(5, 2));
 
         JLabel title = new JLabel("Modificar una gaseosa", SwingConstants.CENTER);
@@ -58,8 +58,8 @@ public class ModifySoda extends JPanel {
         public void actionPerformed(ActionEvent event) {
             try {
                 Soda soda = new Soda(completeBrand.getText(), completeCompany.getText(), Integer.parseInt(completeStock.getText()));
-                handler = new Handler(soda);
-                handler.modify();
+                handler = new Handler();
+                handler.Modify(soda);
             } catch (NumberFormatException e) {
                 try {
                     throw new ExceptionManager("Error al pasar string a numero.");

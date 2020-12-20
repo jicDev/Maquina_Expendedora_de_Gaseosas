@@ -38,33 +38,33 @@ public class Menu extends JMenuBar {
     private class InsertLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.insertSoda();
+            handler.InsertSoda();
         }
     }
 
     private class DeleteLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.deleteSoda();
+            handler.DeleteSoda();
         }
     }
 
     private class ModifyLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.modifySoda();
+            handler.ModifySoda();
         }
     }
 
     private class ListLisener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            handler.listSoda();
+            handler.ListSoda();
         }
     }
 
     private class ShowLisener implements ActionListener {
         @Override
-        public void actionPerformed(ActionEvent e) { handler.showMachine(); }
+        public void actionPerformed(ActionEvent e) { handler.ShowMachine(); }
     }
 }

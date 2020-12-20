@@ -12,10 +12,10 @@ public class DeleteSoda extends JPanel {
     private Handler handler;
 
     public DeleteSoda() {
-        init();
+        Init();
     }
 
-    private void init() {
+    private void Init() {
         setLayout(new GridLayout(1, 1));
 
         JLabel title = new JLabel("Borrar una gaseosa.", SwingConstants.CENTER);
@@ -36,8 +36,8 @@ public class DeleteSoda extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             Soda soda = new Soda(completeBrand.getText());
-            handler = new Handler(soda);
-            handler.delete();
+            handler = new Handler();
+            handler.Delete(soda);
         }
     }
 }

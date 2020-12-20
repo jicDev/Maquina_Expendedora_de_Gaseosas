@@ -16,28 +16,35 @@ public class Machine {
         System.out.println("To: " + this.state.GetState());
     }
 
-    public String AddCoin() {
+    public String GetState() {
+        return this.state.GetState();
+    }
+
+    public void AddCoin() {
         this.state.AddCoin();
-        return this.state.GetState();
     }
 
-    public String ReturnCoin() {
+    public void ReturnCoin() {
         this.state.ReturnCoin();
-        return this.state.GetState();
     }
 
-    public String SelectSoda(String soda) {
+    public void SelectSoda(String soda) {
         this.state.SelectSoda(soda);
-        return this.state.GetState();
     }
 
-    public String BuySoda() {
+    public String GetBrandSelected() {
+        return this.state.GetBrandSelected();
+    }
+
+    public void BuySoda() {
         this.state.BuySoda();
-        return this.state.GetState();
     }
 
-    public String RetrieveSoda() {
+    public void EmptyStock() {
+        this.state.EmptyStock();
+    }
+
+    public void RetrieveSoda() {
         this.state.RetrieveSoda();
-        return this.state.GetState();
     }
 }

@@ -8,14 +8,14 @@ public class ListSoda extends JPanel {
     private Handler handler;
 
     public ListSoda() {
-        init();
+        Init();
     }
 
-    private void init() {
+    private void Init() {
         setLayout(new GridLayout(1, 1));
         handler = new Handler();
 
-        Vector<Vector> rows = handler.list();
+        Vector<Vector> rows = handler.List();
 
         Vector<String> columns = new Vector<>();
         columns.addElement("Marca");

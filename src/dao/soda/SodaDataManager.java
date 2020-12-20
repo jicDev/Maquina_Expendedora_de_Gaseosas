@@ -12,12 +12,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class SodaDataManager implements SodaDAO {
-    private Soda soda;
-
     public SodaDataManager() {}
-    public SodaDataManager(Soda soda){
-        this.soda = soda;
-    }
 
     @Override
     public void InsertSoda(Soda soda) throws ExceptionManager {
@@ -25,9 +20,9 @@ public class SodaDataManager implements SodaDAO {
 
         try (Connection conn = DBManager.connectar();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setString(1, soda.getBrand());
-            preparedStatement.setString(2, soda.getCompany());
-            preparedStatement.setInt(3, soda.getStock());
+            preparedStatement.setString(1, soda.GetBrand());
+            preparedStatement.setString(2, soda.GetCompany());
+            preparedStatement.setInt(3, soda.GetStock());
             preparedStatement.executeUpdate();
         } catch (JdbcSQLException e) {
             throw new ExceptionManager("No se puede insertar dos marcas iguales.");
@@ -42,7 +37,7 @@ public class SodaDataManager implements SodaDAO {
 
         try (Connection conn = DBManager.connectar();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setString(1, soda.getBrand());
+            preparedStatement.setString(1, soda.GetBrand());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,13 +51,40 @@ public class SodaDataManager implements SodaDAO {
 
         try (Connection conn = DBManager.connectar();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setString(1, soda.getCompany());
-            preparedStatement.setInt(2, soda.getStock());
-            preparedStatement.setString(3, soda.getBrand());
-            preparedStatement.executeUpdate();
+            preparedStatement.setString(1, soda.GetCompany());
+            preparedStatement.setInt(2, soda.GetStock());
+            preparedStatement.setString(3, soda.GetBrand());
+            if (soda.GetStock() >= 0) {
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Soda GetSoda(String brand) {
+        String sql = "SELECT * FROM GASEOSA WHERE marca = ?";
+        Soda soda = new Soda();
+
+        try (Connection conn = DBManager.connectar();
+             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setString(1, brand);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String company = resultSet.getString("productor");
+                int stock = resultSet.getInt("stock");
+
+                soda.SetBrand(brand);
+                soda.SetCompany(company);
+                soda.SetStock(stock);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return soda;
     }
 
     @Override

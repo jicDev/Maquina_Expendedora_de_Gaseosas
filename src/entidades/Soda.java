@@ -5,6 +5,12 @@ public class Soda {
     private String company;
     private int stock;
 
+    public Soda() {
+        this.brand = null;
+        this.company = null;
+        this.stock = 0;
+    }
+
     public Soda(String brand, String company, int stock) {
         this.brand = brand;
         this.company = company;
@@ -15,27 +21,27 @@ public class Soda {
         this.brand = brand;
     }
 
-    public String getBrand() {
+    public String GetBrand() {
         return this.brand;
     }
 
-    public void setBrand(String brand) {
+    public void SetBrand(String brand) {
         this.brand = brand;
     }
 
-    public String getCompany() {
+    public String GetCompany() {
         return this.company;
     }
 
-    public void setCompany(String company) {
+    public void SetCompany(String company) {
         this.company = company;
     }
 
-    public int getStock() {
+    public int GetStock() {
         return this.stock;
     }
 
-    public void setStock(int stock) {
+    public void SetStock(int stock) {
         this.stock = stock;
     }
 

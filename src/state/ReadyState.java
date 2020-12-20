@@ -25,7 +25,17 @@ public class ReadyState implements MachineState {
     }
 
     @Override
+    public String GetBrandSelected() {
+        return null;
+    }
+
+    @Override
     public void BuySoda() {
+
+    }
+
+    @Override
+    public void EmptyStock() {
 
     }
 

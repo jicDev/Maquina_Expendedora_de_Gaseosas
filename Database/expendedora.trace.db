@@ -126,3 +126,15 @@ INSERT INTO GASEOSA VALUES(3, 10) [21002-196]
 	at org.h2.server.web.WebThread.process(WebThread.java:164)
 	at org.h2.server.web.WebThread.run(WebThread.java:89)
 	at java.base/java.lang.Thread.run(Unknown Source)
+2020-12-20 14:28:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]
+2020-12-20 14:29:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]
+2020-12-20 14:29:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]
+2020-12-20 14:29:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]
+2020-12-20 14:29:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]
+2020-12-20 14:30:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-196]

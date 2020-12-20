@@ -10,77 +10,74 @@ public class Handler {
     private Window window;
     private SodaService sodaService;
     private MachineService machineService;
-    private Soda soda;
 
     public Handler() {
         sodaService = new SodaService();
-        machineService = new MachineService();
-        machineService.setDao();
-    }
-
-    public Handler(Soda soda) {
-        this.soda = soda;
-        sodaService = new SodaService();
-        sodaService.setDAO(soda);
+        sodaService.SetDAO();
+        machineService = new MachineService(sodaService);
     }
 
     public Handler(Window window) {
         this.window = window;
     }
 
-    public void insertar() throws ExceptionManager {
-        sodaService.insertSoda(soda);
+    public void Insertar(Soda soda) throws ExceptionManager {
+        sodaService.InsertSoda(soda);
     }
 
-    public void modify() {
-        sodaService.modifySoda(soda);
+    public void Modify(Soda soda) {
+        sodaService.ModifySoda(soda);
     }
 
-    public void delete() {
-        sodaService.deleteSoda(soda);
+    public void Delete(Soda soda) {
+        sodaService.DeleteSoda(soda);
     }
 
-    public Vector<Vector> list() {
-        return sodaService.listSoda();
+    public Vector<Vector> List() {
+        return sodaService.ListSoda();
     }
 
-    public String AddCoin() {
-        return machineService.AddCoin();
+    public String GetState() {
+        return this.machineService.GetState();
     }
 
-    public String ReturnCoin() {
-        return machineService.ReturnCoin();
+    public void AddCoin() {
+        machineService.AddCoin();
     }
 
-    public String SelectSoda(String soda) {
-        return machineService.SelectSoda(soda);
+    public void ReturnCoin() {
+        machineService.ReturnCoin();
     }
 
-    public String BuySoda() {
-        return machineService.BuySoda();
+    public void SelectSoda(String soda) {
+        machineService.SelectSoda(soda);
     }
 
-    public String RetrieveSoda() {
-        return machineService.RetrieveSoda();
+    public void BuySoda() {
+        machineService.BuySoda();
     }
 
-    public void insertSoda() {
+    public void RetrieveSoda() {
+        machineService.RetrieveSoda();
+    }
+
+    public void InsertSoda() {
         window.ChangeMode(new InsertSoda());
     }
 
-    public void deleteSoda() {
+    public void DeleteSoda() {
         window.ChangeMode(new DeleteSoda());
     }
 
-    public void modifySoda() {
+    public void ModifySoda() {
         window.ChangeMode(new ModifySoda());
     }
 
-    public void listSoda() {
+    public void ListSoda() {
         window.ChangeMode(new ListSoda());
     }
 
-    public void showMachine() {
+    public void ShowMachine() {
         window.ChangeMode(new ShowMachine());
     }
 }

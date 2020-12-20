@@ -1,32 +1,42 @@
 package services;
 
-import dao.machine.MachineDAO;
-import dao.machine.MachineDataManager;
+import entidades.Machine;
 
 public class MachineService {
-    private MachineDAO machineDAO;
+    private Machine machine;
+    private SodaService sodaService;
 
-    public String AddCoin() {
-        return this.machineDAO.AddCoin();
+    public MachineService(SodaService sodaService) {
+        this.machine = new Machine();
+        this.sodaService = sodaService;
     }
 
-    public String ReturnCoin() {
-        return this.machineDAO.ReturnCoin();
+    public String GetState() {
+        return this.machine.GetState();
     }
 
-    public String SelectSoda(String soda) {
-        return this.machineDAO.SelectSoda(soda);
+    public void AddCoin() {
+        this.machine.AddCoin();
     }
 
-    public String BuySoda() {
-        return this.machineDAO.BuySoda();
+    public void ReturnCoin() {
+        this.machine.ReturnCoin();
     }
 
-    public String RetrieveSoda() {
-        return this.machineDAO.RetrieveSoda();
+    public void SelectSoda(String soda) {
+        this.machine.SelectSoda(soda);
     }
 
-    public void setDao() {
-        this.machineDAO = new MachineDataManager();
+    public void BuySoda() {
+        if (this.sodaService.HasStock(this.machine.GetBrandSelected())) {
+            this.sodaService.DecreaseStock(this.machine.GetBrandSelected());
+            this.machine.BuySoda();
+        } else {
+            this.machine.EmptyStock();
+        }
+    }
+
+    public void RetrieveSoda() {
+        this.machine.RetrieveSoda();
     }
 }
