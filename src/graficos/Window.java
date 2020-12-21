@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Window extends JFrame {
 
     public Window() {
-        setBounds(100, 100, 600, 600);
+        setBounds(100, 100, 550, 600);
 
         Menu menu = new Menu(new Handler(this));
 

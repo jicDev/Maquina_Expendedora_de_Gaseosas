@@ -27,13 +27,17 @@ public class MachineService {
         this.machine.SelectSoda(soda);
     }
 
-    public void BuySoda() {
-        if (this.sodaService.HasStock(this.machine.GetBrandSelected())) {
-            this.sodaService.DecreaseStock(this.machine.GetBrandSelected());
+    public String BuySoda() {
+        String brand = this.machine.GetBrandSelected();
+        if (this.sodaService.HasStock(brand)) {
+            this.sodaService.DecreaseStock(brand);
             this.machine.BuySoda();
         } else {
             this.machine.EmptyStock();
+            brand = null;
         }
+
+        return brand;
     }
 
     public void RetrieveSoda() {

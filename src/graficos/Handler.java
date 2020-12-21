@@ -53,8 +53,8 @@ public class Handler {
         machineService.SelectSoda(soda);
     }
 
-    public void BuySoda() {
-        machineService.BuySoda();
+    public String BuySoda() {
+        return machineService.BuySoda();
     }
 
     public void RetrieveSoda() {
