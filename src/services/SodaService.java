@@ -19,6 +19,9 @@ public class SodaService {
     }
 
     public void ModifySoda(Soda soda){
+        if (soda.GetCompany().equalsIgnoreCase("")) {
+            soda.SetCompany(this.sodaDAO.GetSoda(soda.GetBrand()).GetCompany());
+        }
         this.sodaDAO.ModifySoda(soda);
     }
 
@@ -34,7 +37,7 @@ public class SodaService {
 
     public boolean HasStock(String brand) {
         Soda soda = this.sodaDAO.GetSoda(brand);
-        return soda.GetStock() != 0;
+        return soda.GetStock() > 0;
     }
 
     public void SetDAO(){

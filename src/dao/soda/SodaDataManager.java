@@ -90,7 +90,7 @@ public class SodaDataManager implements SodaDAO {
     @Override
     public Vector<Vector> ListSoda() {
         Vector<Vector> sodas = new Vector<>();
-        String sql = "SELECT * FROM GASEOSA";
+        String sql = "SELECT * FROM GASEOSA ORDER BY MARCA";
 
         try (Connection conn = DBManager.connectar();
              PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
