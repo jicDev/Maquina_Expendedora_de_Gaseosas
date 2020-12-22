@@ -12,9 +12,10 @@ public class ModifySoda extends JPanel {
     private JTextField completeBrand;
     private JTextField completeCompany;
     private JTextField completeStock;
-    private Handler handler;
+    private final Handler handler;
 
-    public ModifySoda() {
+    public ModifySoda(Handler handler) {
+        this.handler = handler;
         Init();
     }
 
@@ -58,8 +59,8 @@ public class ModifySoda extends JPanel {
         public void actionPerformed(ActionEvent event) {
             try {
                 Soda soda = new Soda(completeBrand.getText(), completeCompany.getText(), Integer.parseInt(completeStock.getText()));
-                handler = new Handler();
                 handler.Modify(soda);
+                handler.ListSoda();
             } catch (NumberFormatException e) {
                 try {
                     throw new ExceptionManager("Error al pasar string a numero.");

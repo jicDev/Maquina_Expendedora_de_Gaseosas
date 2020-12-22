@@ -10,17 +10,17 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class ShowMachine extends JPanel {
-    private Handler handler;
+    private final Handler handler;
     private JLabel state;
     private JLabel sodaLabel;
 
-    public ShowMachine() {
+    public ShowMachine(Handler handler) {
+        this.handler = handler;
         init();
     }
 
     private void init() {
         setLayout(new BorderLayout());
-        handler = new Handler();
 
         removeAll();
         add(StartLayout(), BorderLayout.PAGE_START);

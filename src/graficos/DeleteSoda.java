@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
 
 public class DeleteSoda extends JPanel {
     private JTextField completeBrand;
-    private Handler handler;
+    private final Handler handler;
 
-    public DeleteSoda() {
+    public DeleteSoda(Handler handler) {
+        this.handler = handler;
         Init();
     }
 
@@ -36,8 +37,8 @@ public class DeleteSoda extends JPanel {
         @Override
         public void actionPerformed(ActionEvent event) {
             Soda soda = new Soda(completeBrand.getText());
-            handler = new Handler();
             handler.Delete(soda);
+            handler.ListSoda();
         }
     }
 }

@@ -5,15 +5,15 @@ import java.awt.*;
 import java.util.Vector;
 
 public class ListSoda extends JPanel {
-    private Handler handler;
+    private final Handler handler;
 
-    public ListSoda() {
+    public ListSoda(Handler handler) {
+        this.handler = handler;
         Init();
     }
 
     private void Init() {
         setLayout(new GridLayout(1, 1));
-        handler = new Handler();
 
         Vector<Vector> rows = handler.List();
 

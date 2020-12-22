@@ -11,14 +11,12 @@ public class Handler {
     private SodaService sodaService;
     private MachineService machineService;
 
-    public Handler() {
+    public Handler(Window window) {
+        this.window = window;
+
         sodaService = new SodaService();
         sodaService.SetDAO();
         machineService = new MachineService(sodaService);
-    }
-
-    public Handler(Window window) {
-        this.window = window;
     }
 
     public void Insertar(Soda soda) throws ExceptionManager {
@@ -62,22 +60,22 @@ public class Handler {
     }
 
     public void InsertSoda() {
-        window.ChangeMode(new InsertSoda());
+        window.ChangeMode(new InsertSoda(this));
     }
 
     public void DeleteSoda() {
-        window.ChangeMode(new DeleteSoda());
+        window.ChangeMode(new DeleteSoda(this));
     }
 
     public void ModifySoda() {
-        window.ChangeMode(new ModifySoda());
+        window.ChangeMode(new ModifySoda(this));
     }
 
     public void ListSoda() {
-        window.ChangeMode(new ListSoda());
+        window.ChangeMode(new ListSoda(this));
     }
 
     public void ShowMachine() {
-        window.ChangeMode(new ShowMachine());
+        window.ChangeMode(new ShowMachine(this));
     }
 }
